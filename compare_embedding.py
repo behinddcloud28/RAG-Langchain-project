@@ -9,18 +9,18 @@ load_dotenv()
 #---- Set OpenAI API key 
 # Change environment variable name from "OPENAI_API_KEY" to the name given in 
 # your .env file.
-openai.api_key = os.environ['OPENAI_API_KEY']
+api_key = os.environ['OPENAI_API_KEY']
 
 def main():
     # Get embedding for a word.
-    embedding_function = OpenAIEmbeddings()
+    embedding_function = OpenAIEmbeddings(model="text-embedding-ada-002", openai_api_key=api_key)
     vector = embedding_function.embed_query("apple")
     print(f"Vector for 'apple': {vector}")
     print(f"Vector length: {len(vector)}")
 
     # Compare vector of two words
     evaluator = load_evaluator("pairwise_embedding_distance")
-    words = ("apple", "iphone")
+    words = ("apple", "orange")
     x = evaluator.evaluate_string_pairs(prediction=words[0], prediction_b=words[1])
     print(f"Comparing ({words[0]}, {words[1]}): {x}")
 

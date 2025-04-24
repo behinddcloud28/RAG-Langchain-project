@@ -1,8 +1,8 @@
 venv/
 .env
-chroma_*
-chroma
+chroma/
 __pycache__/
 *.pyc
 *.pyo
 .DS_Store
+*.log
